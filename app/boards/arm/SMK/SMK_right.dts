@@ -1,0 +1,57 @@
+#include "SMK.dtsi"
+
+/{
+	kscan0: kscan {
+		compatible = "zmk,kscan-gpio-direct";
+		label = "KSCAN";
+      input-gpios =
+        <&gpio1 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>     // Key 1
+      , <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 2
+      , <&gpio1 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // Key 3
+      , <&gpio1 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 4
+      , <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // Key 5
+      , <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 6
+      , <&gpio0 31 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // Key 7
+      , <&gpio0 26 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 8
+      , <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // key 9
+      , <&gpio0 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // Key 10      
+      , <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 11
+      , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 12
+      , <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // key 13
+      , <&gpio0 16 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 14
+      , <&gpio0 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 15
+      , <&gpio0 25 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 16
+      , <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 17 
+      , <&gpio0 21 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 18 
+      , <&gpio0 23 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 19 
+      , <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  // key 20  
+      , <&gpio1 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // key 21 
+      , <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // key 22 
+      , <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>   // key 23 
+      ;
+	};
+
+};
+
+&default_transform {
+	col-offset = <23>;
+};
+&five_column_transform {
+	col-offset = <23>;
+};
+
+// trackball bus
+&spi0 {
+	status = "okay"; //okay
+	sck-pin = <19>;
+	mosi-pin = <35>;
+	miso-pin = <35>; // same as mosi (3-wire spi)
+	cs-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
+};
+
+&trackball {
+	status = "okay"; //okay
+	irq-gpios = <&gpio0 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+   nreset-gpios = <&gpio0 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+   // double check mouse-nreset
+};

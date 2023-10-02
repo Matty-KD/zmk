@@ -1,0 +1,14 @@
+file_format: "1"
+id: SMK
+name: SMK
+type: board
+arch: arm
+features:
+  - keys
+  - pointer
+outputs:
+  - usb
+  - ble
+siblings:
+  - SMK_Left
+  - SMK_Right

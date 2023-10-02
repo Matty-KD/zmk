@@ -1,0 +1,65 @@
+if BOARD_SMK_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "SMK Left"
+
+endif 
+
+if BOARD_SMK_RIGHT
+config ZMK_KEYBOARD_NAME
+	default "SMK Right"
+config ZMK_SPLIT_ROLE_CENTRAL
+	default y
+
+endif 
+
+
+if BOARD_SMK_LEFT || BOARD_SMK_RIGHT
+
+config BOARD
+	default "SMK"
+
+config ZMK_SPLIT
+	default y
+
+config BT_CTLR
+	default BT
+
+config ZMK_BLE
+	default y
+
+config ZMK_USB
+	default y
+
+# config SPI
+# 	default y
+
+if USB
+
+config USB_NRFX
+	default y
+
+config USB_DEVICE_STACK
+	default y
+
+endif # USB
+
+endif # BOARD_CORNEISH_ZEN_V2_LEFT || BOARD_CORNEISH_ZEN_V2_RIGHT
+
+
+config MOUSE_LAYER_INDEX
+	int "Index of mouse layer"
+	default 0
+
+config SCROLL_LAYER_INDEX
+	int "Index of scroll layer"
+	default 5
+
+config MOUSE_LAYER_ACTIVE_MS
+	int "Amount of milliseconds the mouse layer will be active after using the trackball"
+	default 400
+
+config NRFMACRO_POINTDEVICE
+  bool "add support for point device"
+  default y
+  select SPI

@@ -1,0 +1,7 @@
+config BOARD_SMK_LEFT
+	bool "SMK left"
+	depends on SOC_NRF52840_QIAA
+
+config BOARD_SMK_RIGHT
+	bool "SMK right"
+	depends on SOC_NRF52840_QIAA
